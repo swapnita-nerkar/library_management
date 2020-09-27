@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% block title %}<title>Library Management</title>{% endblock %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <style>
+        {% block style %}
+        {% endblock %}
+        body {
+            background: url("{% static 'bookstack.jpg' %}");
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+        .navbar
+        {
+        border-top:3px solid #000;
+            border-bottom:3px solid #000;
+        }
+        .navbar-custom {
+            background-color: #6DFFD3;
+        }
+        .navbar-brand,
+                color: black;
+            }
+
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+        }
+        .navbar-toggler-icon {
+          color: #fff;
+        }
+        footer {
+            left: 0;
+            padding: 10px 0;
+            background-color: rgba(0,0,0,0.5);
+            color:#ffffff;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container-fluid my-auto">
+    <nav class="navbar navbar-expand-md navbar-light navbar-custom fixed-top">
+        <a class="navbar-brand" style='color:black;font-weight: bold;' href="{% url 'index' %}">LIBRARY MANAGEMENT </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                {% if request.user.is_staff %}
+                <li class="nav-item">
+                    <a class="nav-link" style='color:black;font-weight: bold;' href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  style='color:black;font-weight: bold;' href="{% url 'admin:index' %}">Admin</a>
+                </li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" style='color:black;font-weight: bold;' data-toggle="dropdown">Books</a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{% url 'books' %}">View Books</a>
+                      <a class="dropdown-item" href="{% url 'book_create' %}">Add Book</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" style='color:black;font-weight: bold;' data-toggle="dropdown">Students</a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{% url 'student_create' %}">Add Student</a>
+                      <a class="dropdown-item" href="{% url 'student_list' %}">View Students</a>
+                    </div>
+              </li>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+           &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <div class="dropdown float-right">
+                <button type="button" class="btn btn-warning dropdown-toggle" style='color:black;font-weight: bold;border: 2px solid #4CAF50;' data-toggle="dropdown">
+                  {{ request.user }}
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="{% url 'book_student' %}">ISSUED_BOOK</a>
+                  <a class="dropdown-item" href="{% url 'password_reset' %}">Reset Password</a>
+                  <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </div>
+              </div>
+            </ul>
+
+            {% else %}
+
+            <form class="form-inline my-2 my-lg-0">
+            <a href="{% url 'login' %}" class="btn btn-warning ">Log in</a>
+            &emsp;<a href="{% url 'signup' %}" class="btn btn-primary ml-2">Sign up</a>
+          </form>
+            {% endif %}
+        </div>
+    </nav>
+
+    <br>
+    <div class="row mt-5 mx-auto">
+        <div class="col-sm-12">
+
+            <a href="{% url 'pie-chart' %}" style='color:white;font-weight: bold;'>Pie Chart Embedded to show available books</a>
+            {% block content %}
+
+            {% endblock %}
+        </div>
+    </div>
+
+</div>
+
+        <br><footer style="background-color: rgba(0,0,0,0.5);color:#ffffff;">
+            <div class="container">
+                    <center>
+                        <p>Copyright &copy; Library Management. All Rights Reserved  |  Designed by Swapnita Nerkar</p>
+                    </center>
+            </div>
+        </footer>
+
+
+</body>
+</html>

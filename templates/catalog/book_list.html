@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+.photo{
+    background-color(255,255,255,0.5);
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 50px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+td{
+background-color: #f2f2f2;
+}
+
+thead {
+  background-color: #4CAF50;
+  color: white;
+}
+tr:hover {background-color:#ffffff;}
+
+tr.group,
+tr.group:hover{
+    background-color: #000;
+    font-weight: bold;
+}
+
+{% endblock %}
+
+{% block content %}
+<div class="photo">
+<center>
+    <h1 style="color:white;">Book Library</h1>
+</center>
+
+    {% if book_list %}
+<div style="overflow-x:auto;">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.jqueryui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.jqueryui.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/searchbuilder/1.0.0/css/searchBuilder.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/colreorder/1.5.2/css/colReorder.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/dataTables.jqueryui.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.4/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.jqueryui.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.colVis.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/searchbuilder/1.0.0/js/dataTables.searchBuilder.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/colreorder/1.5.2/js/dataTables.colReorder.min.js"></script>
+
+    <script type="text/javascript" class="init">
+
+    $(document).ready(function () {
+                    var table = $('#id_table1').DataTable({
+                        lengthChange: true,
+                        buttons: ['copy', 'excel', 'pdf', 'colvis', 'print']
+                    });
+
+                    table.buttons().container()
+                        .insertBefore('#id_table1_filter');
+
+                        var table1 = $('#id_table1').DataTable();
+                    });
+
+            $(document).ready(function() {
+                var groupColumn = 4;
+                var table = $('#id_table').DataTable({
+
+                    "columnDefs": [
+                        { "visible": false, "targets": groupColumn }
+                    ],
+                    "order": [[ groupColumn, 'asc' ]],
+                    "displayLength": 25,
+                    "drawCallback": function ( settings ) {
+                        var api = this.api();
+                        var rows = api.rows( {page:'current'} ).nodes();
+                        var last=null;
+
+                        api.column(groupColumn, {page:'current'} ).data().each( function ( group, i ) {
+                            if ( last !== group ) {
+                                $(rows).eq( i ).before(
+                                    '<tr class="group"><td colspan="7">'+group+'</td></tr>'
+                                );
+
+                                last = group;
+                            }
+                        } );
+
+                    }
+                } );
+
+                // Order by the grouping
+                $('#id_table tbody').on( 'click', 'tr.group', function () {
+                    var currentOrder = table.order()[0];
+                    if ( currentOrder[0] === groupColumn && currentOrder[1] === 'asc' ) {
+                        table.order( [ groupColumn, 'desc' ] ).draw();
+                    }
+                    else {
+                        table.order( [ groupColumn, 'asc' ] ).draw();
+                    }
+                } );
+                tr.group.style.backgroundColor='red';
+            } );
+
+
+
+    </script>
+<div class="photo">
+   <table id="id_table" id="id_table1" class="table table-striped table-bordered display">
+    <thead class="thead-dark">
+    <tr>
+      <th>IMAGE</th>
+      <th>TITLE</th>
+      <th>AUTHOR</th>
+      <th>ISBN</th>
+      <th>DEPARTMENT</th>
+      <th>LANGUAGE</th>
+      <th>TOTAL COPIES</th>
+      <th>AVAILABLE COPIES</th>
+    </tr>
+    </thead>
+        <tbody>
+      {% for book in book_list %}
+
+      <tr>
+        <td><div class="preview-pic tab-content">
+            <div class="tab-pane active  my-auto mx-auto" id="pic-1"><img
+                    src="{{ book.pic.url }}" class="img-thumbnail" height="200" width="200"/>
+            </div>
+        </div>
+        </td>
+        <td><a href="{{ book.get_absolute_url }}">{{ book.title }}</a></td>
+        <td>{{book.author}}</td>
+        <td>{{book.isbn}}</td>
+        <td>{{book.department}}</td>
+        <td>{{book.language}}</td>
+        <td>{{book.total_copies}}</td>
+        <td>{{book.available_copies}}</td>
+      </tr>
+
+      {% endfor %}
+       </tbody>
+
+  </table>
+
+    </div>
+  </div>
+ {% else %}
+      <p class=" bg bg-white">There are no books.</p>
+    {% endif %}
+</div>
+{% endblock %}
+

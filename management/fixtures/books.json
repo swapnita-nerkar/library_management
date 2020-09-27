@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Python Machine Learning",
+        "author": "VAHID",
+        "isbn": "7676766776677",
+        "department": 2,
+        "language": 1,
+        "total_copies": 40,
+        "available_copies": 40
+    },
+    {
+        "title": "Robot-Proof",
+        "author": "Joseph E. Aoun",
+        "isbn": "8U91828182891",
+        "department": 3,
+        "language": 1,
+        "total_copies": 30,
+        "available_copies": 30
+    },
+    {
+        "title": "Software Engineering",
+        "author": "Pressman",
+        "isbn": "6512365934567",
+        "department": 2,
+        "language": 1,
+        "total_copies": 10,
+        "available_copies": 5
+    },
+    {
+        "title": "Learning Python, 5th Edition",
+        "author": "Mark Lutz",
+        "isbn": "1234567898765",
+        "department": 3,
+        "language": 1,
+        "total_copies": 15,
+        "available_copies": 11
+    },
+    {
+        "title": "Starting Out with Java",
+        "author": "Tony Gaddis",
+        "isbn": "4567976856745",
+        "department": 2,
+        "language": 1,
+        "total_copies": 42,
+        "available_copies": 34
+    },
+    {
+        "title": "Database Systems",
+        "author": "Carios Coronel",
+        "isbn": "9876541234567",
+        "department": 2,
+        "language": 1,
+        "total_copies": 32,
+        "available_copies": 24
+    }
+]

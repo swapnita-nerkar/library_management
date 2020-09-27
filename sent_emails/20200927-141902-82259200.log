@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: swapnitanerkar28@gmail.com
+Date: Sun, 27 Sep 2020 08:49:02 -0000
+Message-ID: <160119654206.19424.12904104051195653179@DESKTOP-3HHT9N1>
+
+Someone asked for password reset for email swapnitanerkar28@gmail.com. Follow the link below:
+
+http://127.0.0.1:8000/accounts/reset/MTA/5k9-3b0a9128d7017b2342ca/
+
+-------------------------------------------------------------------------------

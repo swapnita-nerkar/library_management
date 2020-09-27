@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block style %}
+#banner_content {
+    position: relative;
+    padding-top: 6%;
+    padding-bottom: 6%;
+    margin-top: 12%;
+    margin-bottom: 12%;
+    margin-left: 2%;
+    background-color: rgba(0, 0, 0, 0.7);
+    max-width: 660px;
+}
+.welcome{
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 50px;
+line-height: 59px;
+color: #FFFFFF;
+}
+
+.browse{
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 30px;
+line-height: 35px;
+
+color: #FFFFFF;
+}
+
+.quote{
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 20px;
+line-height: 23px;
+text-align: center;
+
+color: #FFFFFF;
+
+}
+
+{% endblock %}
+{% block content %}
+<!--Main banner image-->
+                <div class="container">
+                    <center>
+                        <div id="banner_content">
+                            <h1 class="welcome"> Hello {{ request.user }}!!</h1><br>
+                            <h1 class="browse">Welcome to Our Library for Books </h1><br>
+                                <h1 class="quote">"Libraries store the energy that fuels the imagination.
+                                    They open up windows to the world and inspire us to explore and achieve,
+                                    and contribute to improving our quality of life."</h1>
+                        </div>
+                    </center>
+                </div>
+            <!--Main banner image end-->
+{% endblock %}

@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on 127.0.0.1:8000
+From: webmaster@localhost
+To: swapnitanerkar28@gmail.com
+Date: Mon, 14 Sep 2020 10:08:46 -0000
+Message-ID: <160007812663.14268.3188695056500368464@DESKTOP-3HHT9N1>
+
+
+You're receiving this email because you requested a password reset for your user account at 127.0.0.1:8000.
+
+Please go to the following page and choose a new password:
+
+http://127.0.0.1:8000/accounts/reset/MTA/aa74sm-45dfae4c08d69169a5049f8ebc50b44c/
+
+Your username, in case you’ve forgotten: Swapnita
+
+Thanks for using our site!
+
+The 127.0.0.1:8000 team
+
+
+
+-------------------------------------------------------------------------------
