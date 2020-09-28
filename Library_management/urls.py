@@ -27,6 +27,9 @@ from .feed import LatestEntriesFeed
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    #path('oauth/', include('social_django.urls', namespace='social')),
+    # <-- here
+    #path('accounts/', include('allauth.urls')),
     #path('about/', AboutView.as_view()),
     #url('', views(), name='index'),
     path('', views.index, name='index'),

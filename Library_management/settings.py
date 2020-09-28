@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -41,6 +42,13 @@ INSTALLED_APPS = [
     'scores',
     'crispy_forms',
     'api.apps.ApiConfig', # new
+    #'social_django',
+
+    #'allauth',
+    #'allauth.account',
+    #'allauth.socialaccount',
+    #'allauth.socialaccount.providers.google',
+    #'allauth.socialaccount.providers.facebook',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -53,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'management.middleware.GoogleSearch'
+    #'social_django.middleware.SocialAuthExceptionMiddleware',  # <-- Here
 
 ]
 
@@ -70,6 +79,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #'social_django.context_processors.backends',  # <-- Here
+                #'social_django.context_processors.login_redirect', # <-- Here
             ],
         },
     },
@@ -132,3 +143,15 @@ LOGIN_REDIRECT_URL = '/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUTHENTICATION_BACKENDS = {
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+    #'social_core.backend.google.GoogleOAuth2',
+    #'social_core.backends.facebook.FacebookOAuth2',
+}
+
+#SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '519497166669-6l0ejflr5qt6a87frq59bm5vgaj3mjdi.apps.googleusercontent.com'
+#SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'PzPlVIb8xfUuUoGswEwCf9Ou'
+
+SITE_ID=1

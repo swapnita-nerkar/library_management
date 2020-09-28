@@ -8,8 +8,9 @@ align:center;
 {% load crispy_forms_tags %}
 
 {% block content %}
+<br><br>
   <div class="row justify-content-center">
-    <div class="col-6">
+    <div class="col-lg-6 col-12">
       <div class="card">
           <div class="card-header" style="background-color:#6DFFD3;"><h2>Login</h2></div>
         <div class="card-body">
@@ -21,7 +22,10 @@ align:center;
           </form><br>
             <div class="card-footer">
                 <a href="{% url 'password_reset' %}" class="btn btn-link">Forgot your password?</a>
-
+                <button type="button" class="btn btn-danger" style='color:black;font-weight: bold;'>
+                  <a href = "#" style='color:white;font-weight: bold;'>
+                      Sign in with Google+</a>
+                </button>
             </div>
         </div>
       </div>
