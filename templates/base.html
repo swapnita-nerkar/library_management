@@ -3,6 +3,7 @@
 <head>
     {% load static %}
     {% block title %}<title>Library Management</title>{% endblock %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -45,6 +46,7 @@
           color: #fff;
         }
         footer {
+            position:fixed;
             left: 0;
             padding: 10px 0;
             background-color: rgba(0,0,0,0.5);
@@ -99,6 +101,7 @@
                 </button>
                 <div class="dropdown-menu">
                   <a class="dropdown-item" href="{% url 'book_student' %}">ISSUED_BOOK</a>
+                  <a class="dropdown-item" href="{% url 'password_change' %}">Change password</a>
                   <a class="dropdown-item" href="{% url 'password_reset' %}">Reset Password</a>
                   <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                 </div>
@@ -116,10 +119,11 @@
     </nav>
 
     <br>
-    <div class="row mt-5 mx-auto">
+    <div class="row">
         <div class="col-sm-12">
 
-            <a href="{% url 'pie-chart' %}" style='color:white;font-weight: bold;'>Pie Chart Embedded to show available books</a>
+            <a href="{% url 'pie-chart' %}" style='color:white;font-weight: bold;position:fixed;top:70px;' class="d-none d-lg-block d-xl-none">
+                Pie Chart Embedded to show available books</a>
             {% block content %}
 
             {% endblock %}
@@ -128,7 +132,7 @@
 
 </div>
 
-        <br><footer style="background-color: rgba(0,0,0,0.5);color:#ffffff;">
+        <br><br><br><footer style="background-color: rgba(0,0,0,0.5);color:#ffffff;">
             <div class="container">
                     <center>
                         <p>Copyright &copy; Library Management. All Rights Reserved  |  Designed by Swapnita Nerkar</p>
