@@ -1,27 +1,42 @@
 {% extends "base.html" %}
+{% load static %}
 {% block style %}
-    .product-title,  .product-description, .price, .vote, .sizes {
-    margin-bottom: 15px; }
-{% endblock %}
+
+.container-fluid{
+max-width: 100%; display: block;
+}
+
+{% endblock style %}
 {% block content %}
-    <div class="card bg bg-white">
 
-    <div class="container-fliud">
-    <div class="wrapper row">
+<br><br>
+    <div class="card bg bg-white col-12">
+
+    <div class="container-fluid">
+<div class="wrapper row">
         <div class="preview col-6">
-
+        <center>
         <div class="preview-pic tab-content">
-            <div class="tab-pane active  my-auto mx-auto" id="pic-1"><img
-                    src="{{ book.pic.url }}" height="500" width="400"/>
+            <div class="tab-pane active  my-auto" id="pic-1"><img class="img-thumbnail"
+                    src="{{ book.pic.url }}" height="400" width="300"/>
             </div>
         </div>
-
+        </center>
         </div>
     <div class="details col-6">
         <h3>Title: {{ book.title }}</h3>
 
         <p><strong>Author:</strong>{{ book.author }}</p>
-        <p><strong>Summary:</strong> {{ book.summary }}</p>
+        <p>
+            <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+             View Summary
+            </a>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        {{ book.summary }}
+                    </div>
+                </div>
+        </p>
         <p><strong>ISBN:</strong> {{ book.isbn }}</p>
         <p><strong>Language:</strong> {{ book.language }}</p>
         <p><strong>Department:</strong>
@@ -83,4 +98,22 @@
     </div>
 
 {% endblock %}
+
+<script type="text/javascript" class="init">
+$(document).ready(function() {
+
+	$('.nav-toggle').click(function() {
+		var collapse_content_selector = $(this).attr('href');
+		var toggle_switch = $(this);
+		$(collapse_content_selector).toggle(function() {
+			if ($(this).css('display') == 'none') {
+				toggle_switch.html('View All');
+			} else {
+				toggle_switch.html('Close');
+			}
+		});
+	});
+});
+</script>
+
 
