@@ -32,11 +32,11 @@ def BookListView(request):
 
 @allowed_users(allowed_roles=['admin', 'students'])
 def student_BookListView(request):
-    student = Student.objects.get(roll_no=request.user)
-    bor = Issue.objects.filter(student=student)
+    #student = Student.objects.get(roll_no=request.user)
+    issue = Issue.objects.all()
     book_list = []
-    for b in bor:
-        book_list.append(b.book)
+    for i in issue:
+        book_list.append(i.book)
     return render(request, 'catalog/book_list.html', locals())
 
 @allowed_users(allowed_roles=['admin', 'students'])
@@ -89,8 +89,8 @@ def BookDelete(request, pk):
 @allowed_users(allowed_roles=['admin', 'students'])
 def student_request_issue(request, pk):
     obj = Book.objects.get(id=pk)
-    stu = Student.objects.get(roll_no=request.user)
-    s = get_object_or_404(Student, roll_no=str(request.user))
+    stu = Student.objects.get(name=request.user.first_name)
+    s = get_object_or_404(Student, name=str(request.user.first_name))
     if s.total_books_due < 10:
         message = "book has been issued, You can collect book from library"
         a = Issue()
