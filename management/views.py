@@ -30,7 +30,7 @@ def BookListView(request):
     book_list = Book.objects.all()
     return render(request, 'catalog/book_list.html', locals())
 
-@allowed_users(allowed_roles=['admin', 'students'])
+#@allowed_users(allowed_roles=['admin', 'students'])
 def student_BookListView(request):
     #student = Student.objects.get(roll_no=request.user)
     issue = Issue.objects.all()
@@ -39,7 +39,7 @@ def student_BookListView(request):
         book_list.append(i.book)
     return render(request, 'catalog/book_list.html', locals())
 
-@allowed_users(allowed_roles=['admin', 'students'])
+#@allowed_users(allowed_roles=['admin', 'students'])
 def BookDetailView(request, pk):
     book = get_object_or_404(Book, id=pk)
     try:
@@ -86,7 +86,7 @@ def BookDelete(request, pk):
     return redirect('index')
 
 @login_required
-@allowed_users(allowed_roles=['admin', 'students'])
+#@allowed_users(allowed_roles=['admin', 'students'])
 def student_request_issue(request, pk):
     obj = Book.objects.get(id=pk)
     stu = Student.objects.get(name=request.user.first_name)
@@ -107,7 +107,7 @@ def student_request_issue(request, pk):
     return render(request, 'catalog/result.html', locals())
 
 @login_required
-@allowed_users(allowed_roles=['admin', 'students'])
+#@allowed_users(allowed_roles=['admin', 'students'])
 def view_issued_book_view(request):
     issued_books = models.IssuedBook.objects.all()
     li = []
@@ -174,7 +174,7 @@ def StudentDelete(request, pk):
     return redirect('index')
 
 @login_required
-@allowed_users(allowed_roles=['admin', 'students'])
+#@allowed_users(allowed_roles=['admin', 'students'])
 def ret(request, pk):
     if not request.user.is_superuser:
         return redirect('index')
@@ -192,13 +192,13 @@ def ret(request, pk):
     return redirect('index')
 
 @login_required
-@allowed_users(allowed_roles=['admin', 'students'])
+#@allowed_users(allowed_roles=['admin', 'students'])
 def StudentList(request):
     students = Student.objects.all()
     return render(request, 'catalog/student_list.html', locals())
 
 @login_required
-@allowed_users(allowed_roles=['admin', 'students'])
+#@allowed_users(allowed_roles=['admin', 'students'])
 def StudentDetail(request, pk):
     student = get_object_or_404(Student, id=pk)
     books = Issue.objects.filter(student=student)
